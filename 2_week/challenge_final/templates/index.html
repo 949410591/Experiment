@@ -1,0 +1,21 @@
+<html>
+<head>
+	<title>index</title>
+</head>
+<body>
+	{% extends "base.html"%}
+{% block content %}
+	<div class="jumbotron">
+		<h1>This is two articles</h1>
+		{% for i in t%}
+			<h3><a href={{ url_for("file",file_id = i.name) }}>{{i.name}} </a>	
+				{% for a in i.files[0].tags %}
+					<span class="label label-default">{{a}}</span>
+				{% endfor %}
+			</h2>
+			<br>
+		{% endfor %}
+	</div>
+{% endblock%}
+</body>
+</html>

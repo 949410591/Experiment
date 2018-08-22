@@ -1,0 +1,26 @@
+<html>
+<head>
+	<title>base</title>
+	 <link href="{{ url_for('static', filename="bootstrap-3.3.7-dist/css/bootstrap.min.css") }}" rel="stylesheet">
+</head>
+<body>
+	 <link href="{{ url_for('static', filename="bootstrap-3.3.7-dist/css/bootstrap.min.css") }}" rel="stylesheet">
+	<div>
+    		{% block header%}
+	    		<ul class="nav nav-tabs">
+				  <li role="presentation" class="active"><a href={{ url_for("index") }}>Home</a></li>
+				  <li role="presentation"><a href={{ url_for("file",file_id="Java") }} >Java</a></li>
+				  <li role="presentation"><a href={{ url_for("file",file_id="Python") }}>Python</a></li>
+				</ul>
+    		{% endblock%}
+	</div>	
+	<div>{% block content %}
+		{% endblock %}</div>
+	<div>
+			{% block footer%}
+			<br>
+			&copy; Copyright 2017 by <a href="http://www.shiyanlou.com/">shiyalou</a>.
+			{% endblock%}
+	</div>
+</body>
+</html>
