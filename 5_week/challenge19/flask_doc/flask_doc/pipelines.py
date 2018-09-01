@@ -14,7 +14,7 @@ class FlaskDocPipeline(object):
         text = re.sub("<.+?>|</.+?>","",text)
         text = re.sub(" {2,}","",b)
         item["text"] = text
-        js = json.dumps(item)
+        js = json.dumps(str(item))
         redis.lpush('flask_doc:items',js)
         return item
 
