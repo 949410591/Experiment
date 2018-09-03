@@ -12,9 +12,9 @@ class FlaskDocPipeline(object):
     def process_item(self, item, spider):
         text = item["text"]
         text = re.sub("<.+?>|</.+?>","",text)
-        text = re.sub(" {2,}","",b)
+        text = re.sub(" {2,}","",text)
         item["text"] = text
-        js = json.dumps(str(item))
+        js = json.dumps(dict(item))
         self.redis.lpush('flask_doc:items',js)
         return item
 
