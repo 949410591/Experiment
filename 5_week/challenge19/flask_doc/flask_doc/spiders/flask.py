@@ -18,6 +18,6 @@ class FlaskSpider(scrapy.spiders.CrawlSpider):
     def parse_page(self, response):
         item = PageItem()
         item['url'] = str(response.url)
-        item['text'] = response.xpath("//div[@class='body']/div").extract_first()
+        item['text'] = response.xpath("//div[@class='body']/div").xpath("string(.)").extract_first()
         yield item
             
