@@ -1,0 +1,25 @@
+{% macro render_form(form, url) %}
+<form class="" action='{{ url }}' method="post">
+  {{ form.csrf_token }}{# csrf 要在表单第一句话写入 #}
+  {% for field in form %}
+    {% if field.type == 'CSRFTokenField' %}
+      {{ "" }} {# 防止出现一些不必要出现的东西 ，没有这个会在提交按钮下渲染CSREF_token的字样 #}
+    {% elif field.type == 'SubmitField' %}
+      {{ form.submit(class='btn btn-primary', type='submit') }}
+    {% elif field.type == 'BooleanField' %}
+      <div class="checkbox">
+        <label>{{ field() }} {{field.label.text }}</label> {# 前者相当于form.remember_me()，后者是现实该字样 #}
+      </div>
+    {% else %}
+      <div class="form-group {% if field.errors %}has-error{% endif %}">
+        {{field.label}} {{ field(class='form-control') }}
+        {% if field.errors %}
+         {% for error in field.errors %}
+          <span class='help-block'>{{ error }}</span>
+         {% endfor %}
+        {% endif %}
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endmacro %}
+</form>
