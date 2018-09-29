@@ -1,12 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime 
-
-
+from datetime import datetime
 db = SQLAlchemy()
 
 class User(db.Model):
     __tablename__ = 'user'
-
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32), unique=True, index=True, nullable=False)
     publish_courses = db.relationship('Course')
@@ -14,6 +11,7 @@ class User(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
 class Course(db.Model):
+
     __tablename__ = 'course'
 
     id = db.Column(db.Integer, primary_key=True)
